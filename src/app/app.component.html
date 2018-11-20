@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form #loginForm="ngForm" (submit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            name="email"
+            email
+            required
+            ngModel
+            #email="ngModel"
+          />
+        </div>
+        <span *ngIf="!email.valid && email.touched"
+          >Invalid email address!</span
+        >
+        <div class="form-group">
+          <label for="sub">Subscription:</label>
+          <select
+            class="form-control"
+            id="sub"
+            name="sub"
+            #sub="ngModel"
+            [ngModel]="defaultSub"
+            required
+          >
+            <option *ngFor="let subType of subTypes" [value]="subType">
+              {{ subType }}
+            </option>
+          </select>
+        </div>
+        <span *ngIf="!sub.valid && sub.touched">Invalid subscription!</span>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            class="form-control"
+            id="password"
+            name="password"
+            type="password"
+            password
+            ngModel
+            #password="ngModel"
+            required
+          />
+        </div>
+        <span *ngIf="!password.valid && password.touched"
+          >Invalid password!</span
+        >
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+      <span *ngIf="!loginForm.valid && loginForm.touched">
+        Form is invalid!
+      </span>
+    </div>
+  </div>
+</div>
